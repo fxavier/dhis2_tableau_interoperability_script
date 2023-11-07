@@ -1,0 +1,785 @@
+[
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "copyfile",
+        "importPath": "shutil",
+        "description": "shutil",
+        "isExtraImport": true,
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "copyfile",
+        "importPath": "shutil",
+        "description": "shutil",
+        "isExtraImport": true,
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "Error",
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "isExtraImport": true,
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "Error",
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "isExtraImport": true,
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_datetime",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_current_datetime():\n    try:\n        return datetime.datetime.now()\n    except Exception as e:\n        print(f\"Error occurred in get_current_datetime: {e}\")\n        return None\ndef create_backup_directory(main_dir, backup_date):\n    backup_dir = os.path.join(main_dir, 'Backup', backup_date)\n    try:\n        os.makedirs(backup_dir, exist_ok=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "create_backup_directory",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def create_backup_directory(main_dir, backup_date):\n    backup_dir = os.path.join(main_dir, 'Backup', backup_date)\n    try:\n        os.makedirs(backup_dir, exist_ok=True)\n        print(\"Directory created: \" + backup_dir)\n    except Exception as e:\n        print(f\"Directory not created: {e}\")\n    return backup_dir\ndef get_dhis2_auth():\n    \"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_dhis2_auth",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_dhis2_auth():\n    \"\"\"\n    Retrieve DHIS2 authentication credentials from environment variables.\n    Returns:\n        tuple: A tuple containing the username and password.\n    \"\"\"\n    load_dotenv()\n    return os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\")\ndef fetch_org_unit_groups(dhis2auth):\n    \"\"\"Fetch Organization Unit Groups from DHIS2.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_org_unit_groups",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_org_unit_groups(dhis2auth):\n    \"\"\"Fetch Organization Unit Groups from DHIS2.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/organisationUnitGroups\", auth=dhis2auth)\n    if response.ok:\n        return response.json()[\"organisationUnitGroups\"]\n    else:\n        response.raise_for_status()\ndef fetch_org_units_by_group(group_id, dhis2auth):\n    \"\"\"Fetch Organization Units by Group from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnitGroups/{group_id}\", auth=dhis2auth)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_org_units_by_group",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_org_units_by_group(group_id, dhis2auth):\n    \"\"\"Fetch Organization Units by Group from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnitGroups/{group_id}\", auth=dhis2auth)\n    if response.ok:\n        return response.json()[\"organisationUnits\"]\n    else:\n        response.raise_for_status()\ndef fetch_all_org_units(dhis2auth):\n    \"\"\"Fetch all Organization Units from DHIS2.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/organisationUnits\", auth=dhis2auth)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all_org_units",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_all_org_units(dhis2auth):\n    \"\"\"Fetch all Organization Units from DHIS2.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/organisationUnits\", auth=dhis2auth)\n    if response.ok:\n        return response.json()[\"organisationUnits\"]\n    else:\n        response.raise_for_status()\ndef fetch_geo_features_by_group(group_id, dhis2auth):\n    \"\"\"Fetch geographic features for Organization Units by Group from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnitGroups/{group_id}/geoFeatures\", auth=dhis2auth)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_geo_features_by_group",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_geo_features_by_group(group_id, dhis2auth):\n    \"\"\"Fetch geographic features for Organization Units by Group from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnitGroups/{group_id}/geoFeatures\", auth=dhis2auth)\n    if response.ok:\n        return response.json()[\"features\"]\n    else:\n        response.raise_for_status()\ndef fetch_org_unit_details(org_unit_id, dhis2auth):\n    \"\"\"Fetch details of a specific Organization Unit from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnits/{org_unit_id}\", auth=dhis2auth)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_org_unit_details",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_org_unit_details(org_unit_id, dhis2auth):\n    \"\"\"Fetch details of a specific Organization Unit from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnits/{org_unit_id}\", auth=dhis2auth)\n    if response.ok:\n        return response.json()\n    else:\n        response.raise_for_status()\ndef fetch_org_unit_ancestors(org_unit_id, dhis2auth):\n    \"\"\"Fetch ancestor details for a specific Organization Unit from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnits/{org_unit_id}?fields=ancestors[id,name]\", auth=dhis2auth)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_org_unit_ancestors",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_org_unit_ancestors(org_unit_id, dhis2auth):\n    \"\"\"Fetch ancestor details for a specific Organization Unit from DHIS2.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/organisationUnits/{org_unit_id}?fields=ancestors[id,name]\", auth=dhis2auth)\n    if response.ok:\n        return response.json()[\"ancestors\"]\n    else:\n        response.raise_for_status()\ndef process_org_unit_groups(org_unit_groups_raw):\n    \"\"\"Process raw organization unit groups data into a structured format.\"\"\"\n    # Assuming org_unit_groups_raw is a list of dicts with relevant data",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_org_unit_groups",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_org_unit_groups(org_unit_groups_raw):\n    \"\"\"Process raw organization unit groups data into a structured format.\"\"\"\n    # Assuming org_unit_groups_raw is a list of dicts with relevant data\n    processed_groups = [\n        {\n            'id': group['id'],\n            'name': group['name']\n        }\n        for group in org_unit_groups_raw\n    ]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_org_units",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_org_units(org_units_raw):\n    \"\"\"Process raw organization units data into a structured DataFrame.\"\"\"\n    # Convert raw data into a DataFrame, assuming org_units_raw is a list of dicts\n    df = pd.DataFrame(org_units_raw)\n    # Process the DataFrame as needed, e.g., renaming columns, formatting data, etc.\n    df.rename(columns={'id': 'OrgUnitID', 'name': 'OrgUnitName'}, inplace=True)\n    return df\ndef split_org_unit_path(df, column='path'):\n    \"\"\"Split the organization unit path into separate columns.\"\"\"\n    # Assumes the path is a string of IDs separated by slashes",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "split_org_unit_path",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def split_org_unit_path(df, column='path'):\n    \"\"\"Split the organization unit path into separate columns.\"\"\"\n    # Assumes the path is a string of IDs separated by slashes\n    split_paths = df[column].str.split('/', expand=True)\n    # Rename the columns as needed and concatenate with the original DataFrame\n    split_paths.columns = [f'Level{i+1}' for i in range(split_paths.shape[1])]\n    df = pd.concat([df, split_paths], axis=1)\n    return df\ndef replace_ids_with_names(df, id_name_map, column='OrgUnitID'):\n    \"\"\"Replace organization unit IDs with their corresponding names.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "replace_ids_with_names",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def replace_ids_with_names(df, id_name_map, column='OrgUnitID'):\n    \"\"\"Replace organization unit IDs with their corresponding names.\"\"\"\n    # Assuming id_name_map is a dict mapping IDs to names\n    df[column] = df[column].apply(lambda x: id_name_map.get(x, x))\n    return df\ndef parse_geo_coordinates(features_raw):\n    \"\"\"Parse geographic coordinates from raw geo features data.\"\"\"\n    # Assuming features_raw is a list of feature dicts with 'geometry' key\n    processed_features = [\n        {",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "parse_geo_coordinates",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def parse_geo_coordinates(features_raw):\n    \"\"\"Parse geographic coordinates from raw geo features data.\"\"\"\n    # Assuming features_raw is a list of feature dicts with 'geometry' key\n    processed_features = [\n        {\n            'id': feature['id'],\n            'coordinates': feature['geometry']['coordinates']\n        }\n        for feature in features_raw if 'geometry' in feature\n    ]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "merge_geo_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def merge_geo_data(org_units_df, geo_features):\n    \"\"\"Merge geographic data into the organization units DataFrame.\"\"\"\n    # Assuming geo_features is a list of dicts with 'id' and 'coordinates'\n    geo_df = pd.DataFrame(geo_features)\n    merged_df = pd.merge(org_units_df, geo_df, left_on='OrgUnitID', right_on='id', how='left')\n    return merged_df\ndef sort_org_unit_columns(merged_df, column_order):\n    \"\"\"Sort the organization unit DataFrame columns based on a specified order.\"\"\"\n    # column_order is a list of column names specifying the desired order\n    sorted_df = merged_df[column_order]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "sort_org_unit_columns",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def sort_org_unit_columns(merged_df, column_order):\n    \"\"\"Sort the organization unit DataFrame columns based on a specified order.\"\"\"\n    # column_order is a list of column names specifying the desired order\n    sorted_df = merged_df[column_order]\n    return sorted_df\ndef format_org_unit_data(merged_df):\n    \"\"\"Perform final formatting on the organization unit DataFrame.\"\"\"\n    # Perform any final formatting required, e.g., converting data types, setting index, etc.\n    formatted_df = merged_df.copy()\n    formatted_df['coordinates'] = formatted_df['coordinates'].astype(str)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "format_org_unit_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def format_org_unit_data(merged_df):\n    \"\"\"Perform final formatting on the organization unit DataFrame.\"\"\"\n    # Perform any final formatting required, e.g., converting data types, setting index, etc.\n    formatted_df = merged_df.copy()\n    formatted_df['coordinates'] = formatted_df['coordinates'].astype(str)\n    formatted_df.set_index('OrgUnitID', inplace=True)\n    return formatted_df\ndef create_org_unit_hierarchy(merged_df):\n    \"\"\"Create a hierarchy structure for organization units.\"\"\"\n    # This function assumes that the merged_df has columns for each hierarchy level",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "create_org_unit_hierarchy",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def create_org_unit_hierarchy(merged_df):\n    \"\"\"Create a hierarchy structure for organization units.\"\"\"\n    # This function assumes that the merged_df has columns for each hierarchy level\n    hierarchy = merged_df.apply(\n        lambda row: ' > '.join([row[f'Level{i}'] for i in range(1, 5) if f'Level{i}' in row]), axis=1\n    )\n    merged_df['Hierarchy'] = hierarchy\n    return merged_df\ndef filter_org_units_by_criteria(merged_df, criteria):\n    \"\"\"Filter the organization units DataFrame based on specified criteria.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "filter_org_units_by_criteria",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def filter_org_units_by_criteria(merged_df, criteria):\n    \"\"\"Filter the organization units DataFrame based on specified criteria.\"\"\"\n    # criteria is a dict where keys are column names and values are the values to filter by\n    for column, value in criteria.items():\n        merged_df = merged_df[merged_df[column] == value]\n    return merged_df\ndef fetch_data_element_group_sets(dhis2auth):\n    \"\"\"Fetch Data Element Group Sets from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/dataElementGroupSets?paging=false\", auth=dhis2auth)\n    response.raise_for_status()  # This will raise an HTTPError if the request failed",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_data_element_group_sets",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_data_element_group_sets(dhis2auth):\n    \"\"\"Fetch Data Element Group Sets from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/dataElementGroupSets?paging=false\", auth=dhis2auth)\n    response.raise_for_status()  # This will raise an HTTPError if the request failed\n    return pd.DataFrame(response.json()['dataElementGroupSets'])\ndef fetch_data_element_groups(dhis2auth, group_set_id):\n    \"\"\"Fetch Data Element Groups that are part of a set.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/dataElementGroupSets/{group_set_id}\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['dataElementGroups'])",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_data_element_groups",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_data_element_groups(dhis2auth, group_set_id):\n    \"\"\"Fetch Data Element Groups that are part of a set.\"\"\"\n    response = requests.get(f\"https://dhis2.echomoz.org/api/29/dataElementGroupSets/{group_set_id}\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['dataElementGroups'])\ndef fetch_indicators(dhis2auth):\n    \"\"\"Fetch all Indicators from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicators?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicators'])",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_indicators",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_indicators(dhis2auth):\n    \"\"\"Fetch all Indicators from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicators?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicators'])\ndef fetch_indicator_groups(dhis2auth):\n    \"\"\"Fetch all Indicator Groups from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicatorGroups?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicatorGroups'])",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_indicator_groups",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_indicator_groups(dhis2auth):\n    \"\"\"Fetch all Indicator Groups from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicatorGroups?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicatorGroups'])\ndef fetch_indicator_group_sets(dhis2auth):\n    \"\"\"Fetch all Indicator Group Sets from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicatorGroupSets?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicatorGroupSets'])",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_indicator_group_sets",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_indicator_group_sets(dhis2auth):\n    \"\"\"Fetch all Indicator Group Sets from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/indicatorGroupSets?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['indicatorGroupSets'])\ndef fetch_category_option_combos(dhis2auth):\n    \"\"\"Fetch all Category Option Combos from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/categoryOptionCombos?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['categoryOptionCombos'])",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_category_option_combos",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def fetch_category_option_combos(dhis2auth):\n    \"\"\"Fetch all Category Option Combos from the API.\"\"\"\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/categoryOptionCombos?paging=false\", auth=dhis2auth)\n    response.raise_for_status()\n    return pd.DataFrame(response.json()['categoryOptionCombos'])\ndef process_data_elements(data_elements, data_element_groups):\n    \"\"\"Convert the data element group dictionaries to a list and replace IDs with names.\"\"\"\n    separator = ';'\n    data_element_group_string = [\n        separator.join(entry[\"id\"] for entry in group) ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_data_elements",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_data_elements(data_elements, data_element_groups):\n    \"\"\"Convert the data element group dictionaries to a list and replace IDs with names.\"\"\"\n    separator = ';'\n    data_element_group_string = [\n        separator.join(entry[\"id\"] for entry in group) \n        if isinstance(group, list) else ''\n        for group in data_elements[\"dataElementGroups\"]\n    ]\n    data_elements[\"dataElementGroups\"] = data_element_group_string\n    # Create a mapping from data element group IDs to names",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_indicators",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_indicators(indicators, indicator_groups):\n    \"\"\"Convert the indicator group dictionaries to a list and replace IDs with names.\"\"\"\n    separator = ';'\n    indicator_group_string = [\n        separator.join(entry[\"id\"] for entry in group)\n        if isinstance(group, list) else ''\n        for group in indicators[\"indicatorGroups\"]\n    ]\n    indicators[\"indicatorGroups\"] = indicator_group_string\n    # Create a mapping from indicator group IDs to names",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_indicator_group_sets",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_indicator_group_sets(indicator_group_sets):\n    \"\"\"Process indicator group sets and format as needed.\"\"\"\n    # Assuming the raw indicator group sets data needs to be formatted into a DataFrame\n    processed_indicator_group_sets = pd.DataFrame(indicator_group_sets)\n    # Additional formatting can be done here if needed\n    return processed_indicator_group_sets\ndef process_category_option_combos(category_option_combos):\n    \"\"\"Process category option combos and format as needed.\"\"\"\n    # Convert raw category option combos data into a structured DataFrame\n    processed_category_option_combos = pd.DataFrame(category_option_combos)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "process_category_option_combos",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_category_option_combos(category_option_combos):\n    \"\"\"Process category option combos and format as needed.\"\"\"\n    # Convert raw category option combos data into a structured DataFrame\n    processed_category_option_combos = pd.DataFrame(category_option_combos)\n    # Additional formatting can be done here if needed\n    return processed_category_option_combos\ndef replace_ids_with_names(df, id_name_map, column):\n    \"\"\"Replace the IDs with names in a DataFrame based on a given mapping.\"\"\"\n    # Assuming id_name_map is a DataFrame with 'id' and 'displayName' columns\n    id_to_name = id_name_map.set_index('id')['displayName'].to_dict()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "replace_ids_with_names",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def replace_ids_with_names(df, id_name_map, column):\n    \"\"\"Replace the IDs with names in a DataFrame based on a given mapping.\"\"\"\n    # Assuming id_name_map is a DataFrame with 'id' and 'displayName' columns\n    id_to_name = id_name_map.set_index('id')['displayName'].to_dict()\n    df[column] = df[column].replace(id_to_name, regex=True)\n    return df\ndef format_numerators_and_denominators(indicators, data_elements, category_option_combos):\n    \"\"\"Replace the IDs in the numerator and denominator columns with names.\"\"\"\n    # Remove '#' characters and replace '.' with ', '\n    indicators[[\"numerator\", \"denominator\"]] = indicators[[\"numerator\", \"denominator\"]].replace([\"#\"], [\"\"], regex=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "format_numerators_and_denominators",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def format_numerators_and_denominators(indicators, data_elements, category_option_combos):\n    \"\"\"Replace the IDs in the numerator and denominator columns with names.\"\"\"\n    # Remove '#' characters and replace '.' with ', '\n    indicators[[\"numerator\", \"denominator\"]] = indicators[[\"numerator\", \"denominator\"]].replace([\"#\"], [\"\"], regex=True)\n    indicators[[\"numerator\", \"denominator\"]] = indicators[[\"numerator\", \"denominator\"]].replace([\"\\.\"], [\", \"], regex=True)\n    # Create mappings from IDs to names for data elements and category option combos\n    data_element_id_to_name = data_elements.set_index('id')['displayName'].to_dict()\n    category_option_combo_id_to_name = category_option_combos.set_index('id')['displayName'].to_dict()\n    # Replace the data element and category option combo IDs with names\n    indicators['numerator'] = indicators['numerator'].replace(data_element_id_to_name, regex=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_echo_export_group_set_id",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_echo_export_group_set_id(data_element_group_sets, export_name):\n    \"\"\"Extract the ID of the 'ECHO EXPORT' data element group set.\"\"\"\n    return data_element_group_sets.loc[data_element_group_sets['displayName'] == export_name, 'id'].tolist()[0]\ndef retrieve_reference_data(main_dir, dhis2auth):\n    # Fetch data element group sets\n    data_element_group_sets = fetch_data_element_group_sets(dhis2auth)\n    # Extract the ID for the 'ECHO EXPORT' data element group set\n    echo_export_data_element_group_set_id = get_echo_export_group_set_id(data_element_group_sets, 'ECHO EXPORT')\n    # Fetch data element groups within the 'ECHO EXPORT' group set\n    export_data_element_groups = fetch_data_element_groups(dhis2auth, echo_export_data_element_group_set_id)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_reference_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def retrieve_reference_data(main_dir, dhis2auth):\n    # Fetch data element group sets\n    data_element_group_sets = fetch_data_element_group_sets(dhis2auth)\n    # Extract the ID for the 'ECHO EXPORT' data element group set\n    echo_export_data_element_group_set_id = get_echo_export_group_set_id(data_element_group_sets, 'ECHO EXPORT')\n    # Fetch data element groups within the 'ECHO EXPORT' group set\n    export_data_element_groups = fetch_data_element_groups(dhis2auth, echo_export_data_element_group_set_id)\n    # Fetch and process data elements\n    data_elements_raw = fetch_indicators(dhis2auth)  # Assuming this function gets raw data elements\n    data_elements = process_data_elements(data_elements_raw, export_data_element_groups)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_month_list",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_month_list():\n    \"\"\"Generate a list of month codes.\"\"\"\n    months = [f'{i:02}' for i in range(1, 13)]\n    return months\ndef get_year_list(start_year=2019):\n    \"\"\"Generate a list of years from a start year to the current year.\"\"\"\n    current_year = datetime.datetime.now().year\n    years = [str(year) for year in range(start_year, current_year + 1)]\n    return years\ndef generate_month_periods(start_period='201909'):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_year_list",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_year_list(start_year=2019):\n    \"\"\"Generate a list of years from a start year to the current year.\"\"\"\n    current_year = datetime.datetime.now().year\n    years = [str(year) for year in range(start_year, current_year + 1)]\n    return years\ndef generate_month_periods(start_period='201909'):\n    \"\"\"Generate a list of month periods filtered from start_period to current month.\"\"\"\n    months = get_month_list()\n    years = get_year_list()\n    initial_period_list = [year + month for year in years for month in months]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_month_periods",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def generate_month_periods(start_period='201909'):\n    \"\"\"Generate a list of month periods filtered from start_period to current month.\"\"\"\n    months = get_month_list()\n    years = get_year_list()\n    initial_period_list = [year + month for year in years for month in months]\n    current_period = datetime.datetime.now().strftime('%Y%m')\n    period_list = [period for period in initial_period_list if start_period <= period < current_period]\n    return period_list\ndef generate_quarter_periods(start_period='2019Q4'):\n    \"\"\"Generate a list of quarter periods filtered from start_period to current quarter.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_quarter_periods",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def generate_quarter_periods(start_period='2019Q4'):\n    \"\"\"Generate a list of quarter periods filtered from start_period to current quarter.\"\"\"\n    quarters = ['Q1', 'Q2', 'Q3', 'Q4']\n    years = get_year_list()\n    initial_quarter_list = [year + quarter for year in years for quarter in quarters]\n    current_quarter = datetime.datetime.now().strftime('%YQ') + str((datetime.datetime.now().month - 1) // 3 + 1)\n    quarter_list = [period for period in initial_quarter_list if start_period <= period < current_quarter]\n    return quarter_list\ndef generate_scaffold_periods():\n    \"\"\"Create a list of all periods that should have targets, starting from 2020.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_scaffold_periods",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def generate_scaffold_periods():\n    \"\"\"Create a list of all periods that should have targets, starting from 2020.\"\"\"\n    months = get_month_list()\n    quarters = ['Q1', 'Q2', 'Q3', 'Q4']\n    years = get_year_list(start_year=2020)\n    scaffold_periods = [year + period for year in years for period in (months + quarters)]\n    periods_df = pd.DataFrame(scaffold_periods, columns=['period'])\n    periods_df['year'] = periods_df['period'].str[0:4]\n    periods_df['type'] = np.where(periods_df['period'].str[4] == 'Q', 'Q', 'M')\n    return periods_df",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_periods",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def generate_periods():\n    \"\"\"Generate lists of periods for months, quarters, and a scaffold for targets.\"\"\"\n    month_list = generate_month_periods()\n    quarter_list = generate_quarter_periods()\n    scaffold_periods = generate_scaffold_periods()\n    return month_list, quarter_list, scaffold_periods",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_datetime",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def get_current_datetime():\n    try:\n        return datetime.datetime.now()\n    except:\n        return datetime.now()\ndef get_dhis2_auth():\n    load_dotenv()\n    return (os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\"))\ndef create_backup_directory(main_dir, backupDate):\n    backupDir = main_dir + 'Backup' + backupDate",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "get_dhis2_auth",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def get_dhis2_auth():\n    load_dotenv()\n    return (os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\"))\ndef create_backup_directory(main_dir, backupDate):\n    backupDir = main_dir + 'Backup' + backupDate\n    try:\n        os.mkdir(backupDir)\n        print(\"Directory created: \" + backupDir)\n    except Exception as e:\n        print(\"Directory not created:\", e.__class__, \"occurred.\")",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "create_backup_directory",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def create_backup_directory(main_dir, backupDate):\n    backupDir = main_dir + 'Backup' + backupDate\n    try:\n        os.mkdir(backupDir)\n        print(\"Directory created: \" + backupDir)\n    except Exception as e:\n        print(\"Directory not created:\", e.__class__, \"occurred.\")\n    return backupDir\ndef backup_files(fileList, main_dir, backupDir):\n    for filename in fileList:",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "backup_files",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def backup_files(fileList, main_dir, backupDir):\n    for filename in fileList:\n        try:\n            copyfile(os.path.join(main_dir, filename), os.path.join(backupDir, filename))\n            print(filename + \" backed up\")\n        except Exception as e:\n            print(filename + \" not backed up:\", e.__class__, \"occurred.\")\ndef retrieve_org_unit_data(main_dir, dhis2auth):\n    try:\n        # Retrieve Organization Unit Groups",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_org_unit_data",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def retrieve_org_unit_data(main_dir, dhis2auth):\n    try:\n        # Retrieve Organization Unit Groups\n        response = requests.get(\"https://dhis2.echomoz.org/api/29/organisationUnitGroups\", auth=dhis2auth)\n        organisationUnitGroups = response.json()[\"organisationUnitGroups\"]\n        organisationUnitGroups = pd.DataFrame(organisationUnitGroups)\n        # Identify the org unit group for ECHO Sites\n        echoOrgUnitGroup = organisationUnitGroups.loc[organisationUnitGroups['displayName'] == 'ECHO Sites'][\"id\"].tolist()[0]\n        # Get the org unit ids (individual facilities) associated with ECHO\n        response = requests.get(\"https://dhis2.echomoz.org/api/29/organisationUnitGroups/\" + echoOrgUnitGroup, auth=dhis2auth)",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_reference_data",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def retrieve_reference_data(main_dir, dhis2auth):\n    # Get Data Element Group Sets\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/dataElementGroupSets?paging=false\", auth=dhis2auth)\n    dataElementGroupSets = response.json()['dataElementGroupSets']\n    dataElementGroupSets = pd.DataFrame(dataElementGroupSets)\n    # Restrict to the data element group set for ECHO export data\n    echoExportDataElementGroupSet = dataElementGroupSets.loc[dataElementGroupSets['displayName'] == 'ECHO EXPORT'][\n        \"id\"].tolist()[0]\n    # Identify the Data Element Groups that are part of that set\n    response = requests.get(\"https://dhis2.echomoz.org/api/29/dataElementGroupSets/\" + echoExportDataElementGroupSet,",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "generate_periods",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def generate_periods():\n    # Generate a list of months to pull\n    months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']\n    years = list(range(2019, datetime.datetime.now().year + 1))\n    years = [str(i) for i in years]\n    initialPeriodList = [sub1 + sub2 for sub1 in years for sub2 in months]\n    firstMonth = '201909'  # HARD-CODE for start of ECHO Dashboards\n    currentMonth = str(datetime.datetime.now().year) + months[datetime.datetime.now().month - 1]\n    periodList = list(filter(lambda x: x >= firstMonth and x < currentMonth, initialPeriodList))\n    # Generate a list of quarters to pull",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "load_environment",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def load_environment(dhis2auth):\n    # Define the function to load the necessary environment data\n    # You can customize this function to retrieve the required environment data from DHIS2 or any other source.\n    # Placeholder data for demonstration purposes.\n    # Replace these data with actual data retrieval from DHIS2 or other sources.\n    exportDataElementGroups = pd.DataFrame({\n        \"id\": [\"DE_GROUP_1\", \"DE_GROUP_2\"],\n        \"displayName\": [\"Data Element Group 1\", \"Data Element Group 2\"]\n    })\n    dataElements = pd.DataFrame({",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_indicator_data",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def retrieve_indicator_data(dhis2auth, periodList, quarterList, exportIndicatorGroups, txCurrIndicatorGroup, echoOrgUnitGroup):\n    allIndicatorValues = pd.DataFrame()\n    txCurrDataValues = pd.DataFrame()\n    exportIndicatorGroups['results'] = 0\n    dataRetrievalStart = datetime.datetime.now()\n    for period in periodList:\n        print('Retrieving Period:', period)\n        start = datetime.datetime.now()\n        for indicatorGroup in list(exportIndicatorGroups['id']):\n            response = requests.get(\"https://dhis2.echomoz.org/api/29/analytics?dimension=pe:\" + period +",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_data_element_data",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def retrieve_data_element_data(dhis2auth, periodList, exportDataElementGroups):\n    allDataElementValues = pd.DataFrame()\n    exportDataElementGroups['results'] = 0\n    dataRetrievalStart = datetime.now()\n    if len(exportDataElementGroups) > 0:\n        for period in periodList:\n            print('Retrieving Period:', period)\n            start = datetime.datetime.now()\n            for dataElementGroup in list(exportDataElementGroups['id']):\n                response = requests.get(\"https://dhis2.echomoz.org/api/29/analytics?dimension=pe:\" + period +",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main_old",
+        "description": "main_old",
+        "peekOfCode": "def main():\n    main_dir = r\"dhis2/ECHO/Data\"\n    # Step 1: Setup and environment variables\n    dhis2auth = (os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\"))  # NOTE: REPLACE WITH OAUTH2 AUTHENTICATION\n    # Step 2: Load the environment\n    exportDataElementGroups, dataElements, indicators, exportIndicatorGroups, txCurrIndicatorGroup = load_environment(dhis2auth)\n    # Step 3: Generate list of periods\n    periodList, quarterList, periods = generate_periods()\n    # # Step 4: Retrieve organization unit data\n    orgUnitData = retrieve_org_unit_data(main_dir, dhis2auth)",
+        "detail": "main_old",
+        "documentation": {}
+    },
+    {
+        "label": "remove_previous_files",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def remove_previous_files():\n    for file in CSV_FILES:\n        if os.path.exists(file):\n            os.remove(file)\n        else:\n            print(f\"The file {file} does not exist\")\ndef generate_periods():\n    months = [f\"{i:02}\" for i in range(1, 13)]  # list comprehension to generate months\n    years = [str(i) for i in range(2019, datetime.datetime.now().year + 1)]\n    initial_period_list = [y + m for y in years for m in months]",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "generate_periods",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def generate_periods():\n    months = [f\"{i:02}\" for i in range(1, 13)]  # list comprehension to generate months\n    years = [str(i) for i in range(2019, datetime.datetime.now().year + 1)]\n    initial_period_list = [y + m for y in years for m in months]\n    return [x for x in initial_period_list if x >= '2023' and x < f\"{datetime.datetime.now().year}{datetime.datetime.now().month:02}\"]\ndef retrieve_tx_curr_data(dhis2auth):\n    base_url = 'https://dhis2.echomoz.org/api/29/analytics/dataValueSet.json'\n    # Break down dimensions_dx into multiple lines\n    dimensions_dx = (\n        'dkZHx1STjIG;ODw4ILhNQjc;DPelk9N6lkO;cIUIr28czEp;G0dQJXrmivL;'",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_tx_curr_data",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def retrieve_tx_curr_data(dhis2auth):\n    base_url = 'https://dhis2.echomoz.org/api/29/analytics/dataValueSet.json'\n    # Break down dimensions_dx into multiple lines\n    dimensions_dx = (\n        'dkZHx1STjIG;ODw4ILhNQjc;DPelk9N6lkO;cIUIr28czEp;G0dQJXrmivL;'\n        'WLg2OTJuuAL;KbF7faPyL3O;bedEKj2MvAp;yhgoaX6I5SI;M6radndNMcI;'\n        'jVQfAT1i6s9;WMZn1kseuAQ;wn0nkF3Qy4Z;Y9AnAmH63gR;JDUIlfZsvNR;'\n        'uSgb62avNGS;T3IjjSH3Qoi;oaTFQGtXVUE;prfHdt6Iwfm;G6qCaD1HZB5;'\n        'DpFwGPrnM5b;UjfH29cP2nO;Pr5xXF4u6Po;TuecmWZs13b;QgbgKIU8ha6;'\n        'bD6uStxG20G;EhvHDjy4K3i;Wn0Dl0HNkmL;g3dx0K9C4v9;xlIpRdZDuVD;'",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "merge_csv_files",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def merge_csv_files():\n    org_units_df = pd.read_csv('orgunits.csv')\n    tx_curr_data_df = pd.read_csv('tx_curr_data.csv')\n    pd.merge(org_units_df, tx_curr_data_df, on='orgUnit').to_csv('merged_data.csv', index=False)\ndef merge_with_indicators_name_files():  \n    merged_data_df = pd.read_csv('merged_data.csv')\n    TXCURR_Indicators_df = pd.read_csv('TXCURR_Indicators.csv')\n    pd.merge(merged_data_df, TXCURR_Indicators_df, on='dataElement') \\\n        .to_csv('final_merged_data.csv', index=False)\ndef extract_data_from_indicator(indicator_string):",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "merge_with_indicators_name_files",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def merge_with_indicators_name_files():  \n    merged_data_df = pd.read_csv('merged_data.csv')\n    TXCURR_Indicators_df = pd.read_csv('TXCURR_Indicators.csv')\n    pd.merge(merged_data_df, TXCURR_Indicators_df, on='dataElement') \\\n        .to_csv('final_merged_data.csv', index=False)\ndef extract_data_from_indicator(indicator_string):\n    try:\n        header, data = indicator_string.split('|')\n        age, sex = [part.strip() for part in data.split(',')]\n        return sex, age",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "extract_data_from_indicator",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def extract_data_from_indicator(indicator_string):\n    try:\n        header, data = indicator_string.split('|')\n        age, sex = [part.strip() for part in data.split(',')]\n        return sex, age\n    except:\n        print(f\"Error processing indicator_string: {indicator_string}\")\n        return None, None\ndef insert_data_into_sqlite_database():\n    conn = sqlite3.connect('db.sqlite3')",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "insert_data_into_sqlite_database",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def insert_data_into_sqlite_database():\n    conn = sqlite3.connect('db.sqlite3')\n    cur = conn.cursor()\n    df = pd.read_csv('final_merged_data.csv')\n    for index, row in df.iterrows():\n        sex, age = extract_data_from_indicator(row['name'])\n        if not sex or not age:\n            continue\n        cur.execute(\"\"\"\n            INSERT INTO core_dadosecho (us, indicator, periodo, valor, sexo, Age)",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "insert_into_mysql_db",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def insert_into_mysql_db():\n    try:\n        connection = mysql.connector.connect(\n            host=os.getenv(\"MYSQL_HOST\"),\n            user=os.getenv(\"MYSQL_USER\"),\n            password=os.getenv(\"MYSQL_PASSWORD\"),\n            database=os.getenv(\"MYSQL_DB\")\n        )\n        cursor = connection.cursor()\n        df = pd.read_csv('final_merged_data.csv')",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "def main():\n    remove_previous_files()\n    load_dotenv()\n    dhis2auth = (os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\"))\n    retrieve_tx_curr_data(dhis2auth)\n    merge_csv_files()\n    merge_with_indicators_name_files()\n    insert_data_into_sqlite_database()\n    # insert_into_mysql_db()  # Uncomment this when you want to use MySQL\nif __name__ == \"__main__\":",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "CSV_FILES",
+        "kind": 5,
+        "importPath": "tx_curr",
+        "description": "tx_curr",
+        "peekOfCode": "CSV_FILES = [\"tx_curr_data.csv\", \"merged_data.csv\", \"final_merged_data.csv\"]\ndef remove_previous_files():\n    for file in CSV_FILES:\n        if os.path.exists(file):\n            os.remove(file)\n        else:\n            print(f\"The file {file} does not exist\")\ndef generate_periods():\n    months = [f\"{i:02}\" for i in range(1, 13)]  # list comprehension to generate months\n    years = [str(i) for i in range(2019, datetime.datetime.now().year + 1)]",
+        "detail": "tx_curr",
+        "documentation": {}
+    },
+    {
+        "label": "remove_previous_files",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def remove_previous_files():\n    files_to_remove = [\"tx_curr_data.csv\", \"merged_data.csv\", \"final_merged_data.csv\"]\n    for file in files_to_remove:\n        if os.path.exists(file):\n            os.remove(file)\n        else:\n            print(f\"The file {file} does not exist\")\ndef generate_periods():\n    # Generate a list of months to pull\n    months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "generate_periods",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def generate_periods():\n    # Generate a list of months to pull\n    months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']\n    years = list(range(2019, datetime.datetime.now().year + 1))\n    years = [str(i) for i in years]\n    initialPeriodList = [sub1 + sub2 for sub1 in years for sub2 in months]\n    firstMonth = '2023'  \n    currentMonth = str(datetime.datetime.now().year) + months[datetime.datetime.now().month - 1]\n    periodList = list(filter(lambda x: x >= firstMonth and x < currentMonth, initialPeriodList))\n    return periodList",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_tx_curr_data",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def retrieve_tx_curr_data(dhis2auth):\n    base_url = 'https://dhis2.echomoz.org/api/29/analytics/dataValueSet.json'\n    # Break down dimensions_dx into multiple lines\n    dimensions_dx = (\n        'dkZHx1STjIG;ODw4ILhNQjc;DPelk9N6lkO;cIUIr28czEp;G0dQJXrmivL;'\n        'WLg2OTJuuAL;KbF7faPyL3O;bedEKj2MvAp;yhgoaX6I5SI;M6radndNMcI;'\n        'jVQfAT1i6s9;WMZn1kseuAQ;wn0nkF3Qy4Z;Y9AnAmH63gR;JDUIlfZsvNR;'\n        'uSgb62avNGS;T3IjjSH3Qoi;oaTFQGtXVUE;prfHdt6Iwfm;G6qCaD1HZB5;'\n        'DpFwGPrnM5b;UjfH29cP2nO;Pr5xXF4u6Po;TuecmWZs13b;QgbgKIU8ha6;'\n        'bD6uStxG20G;EhvHDjy4K3i;Wn0Dl0HNkmL;g3dx0K9C4v9;xlIpRdZDuVD;'",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "merge_csv_files",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def merge_csv_files():\n    # Read the CSV files\n    orgUnits_df = pd.read_csv('orgunits.csv')\n    tx_curr_data_df = pd.read_csv('tx_curr_data.csv')\n    # Merge the dataframes\n    merged_df = pd.merge(orgUnits_df, tx_curr_data_df, on='orgUnit')\n    # Save the merged dataframe to a new CSV file\n    merged_df.to_csv('merged_data.csv', index=False)\nmerge_csv_files()\ndef merge_with_indicators_name_files():",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "merge_with_indicators_name_files",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def merge_with_indicators_name_files():\n    # Read the CSV files\n    merged_data_df = pd.read_csv('merged_data.csv')\n    TXCURR_Indicators_df = pd.read_csv('TXCURR_Indicators.csv')\n    # Merge the dataframes\n    final_merged_df = pd.merge(merged_data_df, TXCURR_Indicators_df, on='dataElement')\n    # Save the merged dataframe to a new CSV file\n    final_merged_df.to_csv('final_merged_data.csv', index=False)\nmerge_csv_files()\ndef extract_sex(indicator_string):",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "extract_sex",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def extract_sex(indicator_string):\n    if '|' in indicator_string:\n        # Split the string on the pipe (|) to separate the header from the data\n        header, data = indicator_string.split('|')\n        # Split the data part on commas to separate the individual data pieces\n        data_parts = data.split(',')\n        # Select the second data part (index 1, since indexing starts at 0 in Python)\n        sex = data_parts[1].strip()  # .strip() removes any leading or trailing white space\n    else:\n        print(f\"Error: expected '|' in indicator_string but got {indicator_string}\")",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "extract_age",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def extract_age(indicator_string):\n    if '|' in indicator_string:\n        # Split the string on the pipe (|) to separate the header from the data\n        header, data = indicator_string.split('|')\n        # Split the data part on commas to separate the individual data pieces\n        data_parts = data.split(',')\n        # Select the first data part (index 0, since indexing starts at 0 in Python)\n        age = data_parts[0].strip()  # .strip() removes any leading or trailing white space\n    else:\n        print(f\"Error: expected '|' in indicator_string but got {indicator_string}\")",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "insert_data_into_sqlite_database",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def insert_data_into_sqlite_database():\n    # Create an engine\n    conn = sqlite3.connect('db.sqlite3')\n    cur = conn.cursor()\n    cur.execute('''\n    CREATE TABLE dadosecho (\n        provincia TEXT, \n        distrito TEXT, \n        ou_id TEXT, \n        us TEXT, ",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "insert_into_mysql_db",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def insert_into_mysql_db(data_values):\n    try:\n        # Establish a connection to your MySQL database\n        connection = mysql.connector.connect(\n            host='localhost',  # replace with your host\n            database='database_name',  # replace with your database name\n            user='username',  # replace with your username\n            password='password')  # replace with your password\n        # Create a cursor object using cursor() method\n        cursor = connection.cursor()",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "tx_curr_old",
+        "description": "tx_curr_old",
+        "peekOfCode": "def main():\n    remove_previous_files()\n    load_dotenv()\n    dhis2auth = (os.getenv(\"DHIS_USERNAME\"), os.getenv(\"DHIS_PASSWORD\"))\n    retrieve_tx_curr_data(dhis2auth)\n    merge_csv_files()\n    merge_with_indicators_name_files()\n    insert_data_into_sqlite_database()\n   # insert_into_mysql_db()\nif __name__ == \"__main__\":",
+        "detail": "tx_curr_old",
+        "documentation": {}
+    }
+]
